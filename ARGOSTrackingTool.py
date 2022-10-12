@@ -11,7 +11,7 @@
 #--------------------------------------------------------------
 
 #Create a variable pointing to the data file
-file_name = 'data/raw/Saracopy.txt'
+file_name = 'data/raw/Sara.txt'
 
 #Create a file object from the file
 file_object = open(file_name,'r')
@@ -19,6 +19,10 @@ file_object = open(file_name,'r')
 #Read contents of file into a list
 lineList = file_object.readlines()
 file_object.close()
+
+# create empty dictionaries for date and location data, key recordID
+date_dict = {}
+location_dict = {}
 
 #Extract one data line into a variable
 for lineString in lineList:
@@ -38,4 +42,7 @@ for lineString in lineList:
     obs_lon = lineData[7]
     
     #Print the location of sara
-    print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat},lon:{obs_lon} on {obs_date}")
+    #print(f"Record {record_id} indicates Sara was seen at lat:{obs_lat},lon:{obs_lon} on {obs_date}")
+    
+    date_dict[record_id] = obs_date
+    location_dict[record_id] = (obs_lat, obs_lon)
